@@ -1,0 +1,7 @@
+*.zip
+*.txt
+*.csv
+*.shp
+.DS_Store
+temp_dir/*
+*.img
