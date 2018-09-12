@@ -22,4 +22,5 @@ def shapefile_to_csv(input_file, output_file)
   end
 end
 
-shapefile_to_csv('tl_2017_us_primaryroads/tl_2017_us_primaryroads.shp',"2017primaryroads.csv")
+#shapefile_to_csv('tl_2017_us_primaryroads/tl_2017_us_primaryroads.shp',"2017primaryroads.csv")
+shapefile_to_csv('NY_New_York_36061/tl_2017_36061_roads.shp',"nytest.csv")
