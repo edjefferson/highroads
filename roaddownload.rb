@@ -58,13 +58,13 @@ def counties_to_csv
     {
       state_code: zip.split("_")[1].split("/")[-1],
       county_name: zip.split("_")[2..-2].join("_"),
-      county_code: zip.split("_")[-1]
+      county_code: zip.split("_")[-1].split(".")[0]
     }
   end
 
   counties.each do |county|
     puts county.inspect
-    Zip::File.open("all_roads/#{county[:state_code]}_#{county[:county_name]}_#{county[:county_code]}") { |zip_file|
+    Zip::File.open("all_roads/#{county[:state_code]}_#{county[:county_name]}_#{county[:county_code]}.zip") { |zip_file|
        zip_file.each { |f|
          f_path=File.join("temp_dir", f.name)
          FileUtils.mkdir_p(File.dirname(f_path))
