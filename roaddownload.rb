@@ -56,8 +56,8 @@ def counties_to_csv
   zips = Dir["all_roads/*.zip"]
   counties = zips.map do |zip|
     {
-      state: zip.split("_")[0],
-      county_name: zip.split("_")[1..-2].join(" "),
+      state: zip.split("_")[1].split("/")[-1],
+      county_name: zip.split("_")[2..-2].join(" "),
       county_code: zip.split("_")[-1]
     }
   end
