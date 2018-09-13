@@ -5,3 +5,10 @@
 .DS_Store
 temp_dir/*
 *.img
+*.shx
+*.cpg
+*.dbf
+*.prj
+*.shp.ea.iso.xml
+*.shp.iso.xml
+*.shp.xml
