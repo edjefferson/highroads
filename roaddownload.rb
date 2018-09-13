@@ -64,7 +64,7 @@ def counties_to_csv
 
   counties.each do |county|
     puts county.inspect
-    Zip::File.open("all_roads/#{county[:state_code]}_#{county[:county_name]}_#{county[:county_code]}.zip") { |zip_file|
+    Zip::File.open("all_roads/#{county[:state_code]}_#{county[:county_name]}_#{county[:county_code]}") { |zip_file|
        zip_file.each { |f|
          f_path=File.join("temp_dir", f.name)
          FileUtils.mkdir_p(File.dirname(f_path))
