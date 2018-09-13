@@ -53,7 +53,7 @@ def shapefile_to_csv(input_file, output_file)
 end
 
 def counties_to_csv
-  zips = Dir["allroads/*.zip"]
+  zips = Dir["all_roads/*.zip"]
   counties = zips.map do |zip|
     {
       state: zip.split("_")[0],
