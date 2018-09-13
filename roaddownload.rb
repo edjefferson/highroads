@@ -57,7 +57,7 @@ def counties_to_csv
   counties = zips.map do |zip|
     {
       state_code: zip.split("_")[1].split("/")[-1],
-      county_name: zip.split("_")[2..-2].join(" "),
+      county_name: zip.split("_")[2..-2].join("_"),
       county_code: zip.split("_")[-1]
     }
   end
