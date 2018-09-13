@@ -52,22 +52,33 @@ def shapefile_to_csv(input_file, output_file)
   end
 end
 
-def states_to_csv(states)
-  states.each do |k, v|
-    Zip::File.open("roads/#{v}_#{k.gsub(" ","_")}.zip") { |zip_file|
+def counties_to_csv
+  zips = Dir["allroads/*.zip"]
+  counties = zips.map do |zip|
+    {
+      state: zip.split("_")[0],
+      county_name: zip.split("_")[1..-2].join(" "),
+      county_code: zip.split("_")[-1]
+    }
+  end
+
+  counties.each do |county|
+    Zip::File.open("all_roads/#{county[:state_code]}_#{county[:county_name]}_#{county[:county_code]}.zip") { |zip_file|
        zip_file.each { |f|
-       f_path=File.join("temp_dir", f.name)
-       FileUtils.mkdir_p(File.dirname(f_path))
-       zip_file.extract(f, f_path) unless File.exist?(f_path)
-     }
+         f_path=File.join("temp_dir", f.name)
+         FileUtils.mkdir_p(File.dirname(f_path))
+         zip_file.extract(f, f_path) unless File.exist?(f_path)
+       }
     }
     puts "zip extracted"
     file = Dir.glob("temp_dir/*.shp")[0]
-    shapefile_to_csv(file, "roads_csvs/#{v}_#{k.gsub(" ","_")}.csv")
+    shapefile_to_csv(file, "all_roads_csvs/#{county[:state_code]}_#{county[:county_name]}_#{county[:county_code]}.csv")
     FileUtils.rm_rf('temp_dir')
     puts "temp files deleted"
   end
 end
+
+
 
 def database_import
 end
