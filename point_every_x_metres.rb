@@ -79,5 +79,7 @@ class RoadSegment < ActiveRecord::Base
   end
 
 end
-
-RoadSegment.import_csv("roads_csvs/02_Alaska.csv")
+csvs = Dir["all_roads_csvs/*.csv"].sort
+csvs.each do |csv_file|
+  RoadSegment.import_csv(csv_file)
+end
