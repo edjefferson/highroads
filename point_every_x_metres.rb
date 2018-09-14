@@ -35,7 +35,7 @@ class RoadSegment < ActiveRecord::Base
     x = 0
     road_segments = []
     last_row = []
-    CSV.open("output/#{file_name.split(".")[0]}_result2.csv","w") do |csv|
+    CSV.open("output/#{file_name.split(".")[0]}_result.csv","w") do |csv|
     FastestCSV.foreach("#{file_name}") do |row|
       if row[0] == last_row[0] && ["S1100","S1200","S1400"].include?(row[3])
         coords = calculate_intermediate_coordinates([last_row[4],last_row[5]],[row[4],row[5]])
