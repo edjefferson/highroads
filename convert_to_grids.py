@@ -2,33 +2,36 @@ import csv
 import pandas
 import math
 
-
-df = pandas.read_csv("nytest_result.csv",
-
-            header=0,
-            names=['id','name','something','code','latitude','longitude'])
-
+def assign_to_grid(file_name):
+    df = pandas.read_csv(file_name,
+                            header=0,
+                            names=['id','name','something','code','latitude','longitude'])
 
 
-#print(df.dtypes)
-#queried = df.query('latitude > 40.7 & latitude < 40.8')
-#print(queried.sort_values(by=['latitude','longitude']))
-#queried.sort_values(by=['latitude','longitude']).to_csv("pandas.csv")
-max_lat = (math.floor(df['latitude'].max()))
-min_lat = (math.floor(df['latitude'].min()))
-max_lng = (math.floor(df['longitude'].max()))
-min_lng = (math.floor(df['longitude'].min()))
 
-lats = (list(range(min_lat, max_lat + 1)))
-lngs =(list(range(min_lng, max_lng + 1)))
+    max_lat = (math.floor(df['latitude'].max()))
+    min_lat = (math.floor(df['latitude'].min()))
+    max_lng = (math.floor(df['longitude'].max()))
+    min_lng = (math.floor(df['longitude'].min()))
 
-lat_lngs = []
-for lat in lats:
-    for lng in lngs:
-        lat_lngs.append([lat,lng])
+    lats = (list(range(min_lat, max_lat + 1)))
+    lngs =(list(range(min_lng, max_lng + 1)))
 
-for lat, lng in lat_lngs:
-    queried = df.query('latitude >= @lat & latitude < @lat + 1 & longitude >= @lng & longitude < @lng + 1')
-    queried.sort_values(by=['latitude','longitude']).to_csv("n%sw%s.csv" % (lat,-lng))
-    print(queried)
-print(lat_lngs)
+    lat_lngs = []
+    for lat in lats:
+        for lng in lngs:
+            lat_lngs.append([lat,lng])
+
+    for lat, lng in lat_lngs:
+        if lng > -100:
+            zero_pad = "0"
+        else:
+            zero_pad = ""
+        queried = df.query('latitude >= @lat & latitude < @lat + 1 & longitude >= @lng & longitude < @lng + 1')
+        if queried.size > 0:
+            queried.sort_values(by=['latitude','longitude']).to_csv("n%sw%s%s.csv" % (lat,zero_pad,-lng), mode='a', header=False)
+
+
+            print(queried)
+
+assign_to_grid("nytest.csv")
