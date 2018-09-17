@@ -5,10 +5,11 @@ import time
 import os
 
 def assign_to_grid(file_name):
+    pandas.options.mode.chained_assignment = None
     df = pandas.read_csv(file_name,
                             header=0,
                             names=['id','name','something','code','latitude','longitude'])
-    df.options.mode.chained_assignment = None
+
     state = file_name.split("/")[-1].split("_")[0]
     county = file_name.split("/")[-1].split("_")[-2]
     #print(state)
