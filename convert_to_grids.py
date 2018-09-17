@@ -31,7 +31,7 @@ def assign_to_grid(file_name):
             zero_pad = ""
         queried = df.query('latitude >= @lat & latitude < @lat + 1 & longitude >= @lng & longitude < @lng + 1')
         if queried.size > 0:
-            queried['state'] = state
+            queried['State'] = state
             queried.sort_values(by=['latitude','longitude']).to_csv("grids/n%sw%s%s.csv" % (lat,zero_pad,abs(lng)), mode='a', header=False)
 
 
