@@ -16,6 +16,7 @@ def assign_to_grid(file_name):
     df['State'] = state
     #print(county)
     df['County'] = county
+    df['longitude'] = df['longitude'].abs() * -1
     max_lat = (math.floor(df['latitude'].max()))
     min_lat = (math.floor(df['latitude'].min()))
     max_lng = (math.floor(df['longitude'].max()))
