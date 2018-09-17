@@ -9,7 +9,10 @@ def assign_to_grid(file_name):
                             header=0,
                             names=['id','name','something','code','latitude','longitude'])
 
-    state = file_name[:2]
+    state = file_name.split("/")[-1].split("_")[0]
+    county = file_name.split("/")[-1].split("_")[-2]
+    print(state)
+    print(county)
 
     max_lat = (math.floor(df['latitude'].max()))
     min_lat = (math.floor(df['latitude'].min()))
