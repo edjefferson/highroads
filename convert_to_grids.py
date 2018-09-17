@@ -25,7 +25,7 @@ def assign_to_grid(file_name):
             lat_lngs.append([lat,lng])
 
     for lat, lng in lat_lngs:
-        if lng > -100:
+        if lng > -100 or lng < 100:
             zero_pad = "0"
         else:
             zero_pad = ""
@@ -34,7 +34,7 @@ def assign_to_grid(file_name):
             queried.sort_values(by=['latitude','longitude']).to_csv("grids/n%sw%s%s.csv" % (lat,zero_pad,-lng), mode='a', header=False)
 
 
-            print("grid n%sw%s%s" % (lat,zero_pad,-lng))
+            print("grid n%sw%s%s" % (lat,zero_pad,-abs(lng)))
 
 files = sorted(os.listdir('output/all_roads_csvs/'))
 
