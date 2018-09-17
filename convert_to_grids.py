@@ -12,6 +12,7 @@ def assign_to_grid(file_name):
     state = file_name.split("/")[-1].split("_")[0]
     county = file_name.split("/")[-1].split("_")[-2]
     print(state)
+    df['State'] = state
     print(county)
 
     max_lat = (math.floor(df['latitude'].max()))
@@ -32,6 +33,8 @@ def assign_to_grid(file_name):
             zero_pad = "0"
         else:
             zero_pad = ""
+
+
         queried = df.query('latitude >= @lat & latitude < @lat + 1 & longitude >= @lng & longitude < @lng + 1')
         if queried.size > 0:
             queried['State'] = state
