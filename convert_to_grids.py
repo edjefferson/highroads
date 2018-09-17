@@ -25,7 +25,7 @@ def assign_to_grid(file_name):
             lat_lngs.append([lat,lng])
 
     for lat, lng in lat_lngs:
-        if lng > -100 or lng < 100:
+        if lng > -100 or (lng >= 0 and lng < 100):
             zero_pad = "0"
         else:
             zero_pad = ""
