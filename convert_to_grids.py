@@ -48,7 +48,7 @@ def assign_to_grid(file_name):
 files = sorted(os.listdir('output/all_roads_csvs/'))
 
 for file in files:
-    if file[-4:] == ".csv" and file[:2] <= "TN":
+    if file[-4:] == ".csv" #and file[:2] <= "TN":
         print(file)
         assign_to_grid('output/all_roads_csvs/' + file)
         #time.sleep(5)
