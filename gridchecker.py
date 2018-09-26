@@ -37,7 +37,8 @@ def every_thing():
 
                 file_df = pandas.read_csv("grids/" + file,
 
-                                        dtype={'id': int64,'name': object,'something': object,'code': object,'latitude': float64,'longitude': float64,'state': object,'county': object})
+                                        names=['id','name','something','code','latitude','longitude','state','county'],
+                                        dtype={'id': np.int64,'name': np.object,'something': np.object,'code': np.object,'latitude': np.float64,'longitude': np.float64,'state': np.object,'county': np.object})
 
                 print(file_df.dtypes)
                 max_lat = file_df['latitude'].max()
