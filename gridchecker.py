@@ -38,12 +38,14 @@ def every_thing():
                 file_df = pandas.read_csv("grids/" + file,
 
                                         names=['id','name','something','code','latitude','longitude','state','county'])
+                                        #dtype={"something": object, "code": object})
 
+                print(file_df.dtypes)
+                max_lat = file_df['latitude'].max(numeric_only=True)
+                min_lat = file_df['latitude'].min(numeric_only=True)
+                max_lng = file_df['longitude'].max(numeric_only=True)
+                min_lng = file_df['longitude'].min(numeric_only=True)
 
-                max_lat = file_df['latitude'].max()
-                min_lat = file_df['latitude'].min()
-                max_lng = file_df['longitude'].max()
-                min_lng = file_df['longitude'].min()
                 matching_grid_squares = df.query("minY <= %s & maxY >= %s & minX <= %s & maxX >= %s" % (min_lat, max_lat,min_lng, max_lng))
 
                 for index, row in matching_grid_squares.iterrows():
