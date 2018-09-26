@@ -37,7 +37,6 @@ def every_thing():
 
                 file_df = pandas.read_csv("grids/" + file,
 
-                                        names=['id','name','something','code','latitude','longitude','state','county'],
                                         dtype={'id': int64,'name': object,'something': object,'code': object,'latitude': float64,'longitude': float64,'state': object,'county': object})
 
                 print(file_df.dtypes)
