@@ -47,8 +47,8 @@ def every_thing():
                 matching_grid_squares = df.query("minY <= %s & maxY >= %s & minX <= %s & maxX >= %s" % (min_lat, max_lat,min_lng, max_lng))
 
                 for index, row in matching_grid_squares.iterrows():
-                    csvwriter.writerow([file[:-4],row['code']])
-                    print(file[:-4] + "," + row['code'])
+                    csvwriter.writerow([file, file[:-4],row['code']])
+                    print(file + "," + file[:-4] + "," + row['code'])
 
 
 
