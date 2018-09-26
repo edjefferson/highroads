@@ -27,21 +27,18 @@ def every_thing():
     df['minY'] = df.apply(get_min_y,axis=1)
     df['maxX'] = df.apply(get_max_x,axis=1)
     df['minX'] = df.apply(get_min_x,axis=1)
-    #print(df)
+
     with open('gridmatches.csv', 'w') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',',
                     quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for file in files:
             if file[-4:] == ".csv":
 
-                #print(file)
-                file_df = pandas.read_csv("testing/" + file,
+
+                file_df = pandas.read_csv("grids/" + file,
 
                                         names=['id','name','something','code','latitude','longitude','state','county'])
 
-                #print(file_df)
-
-                #print(file_df)
 
                 max_lat = file_df['latitude'].max()
                 min_lat = file_df['latitude'].min()
@@ -54,11 +51,9 @@ def every_thing():
                     print(file[:-4] + "," + row['code'])
 
 
-                #YES if min_lat > min Y
 
                 start, end = file[:-4].split("w")
                 new_start = int(start[1:]) + 1
                 code = "n%sw%s" % (new_start,end)
-                #print(df[df.code == code].shape[0])
 
 every_thing()
