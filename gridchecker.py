@@ -4,7 +4,7 @@ import math
 import time
 import os
 
-files = sorted(os.listdir('testing'))
+files = sorted(os.listdir('grids'))
 
 df = pandas.read_csv("coded_master_list_ned_img.csv",
                         header=0)
