@@ -59,6 +59,7 @@ def every_thing():
 
 
 def allfile():
+    files = sorted(os.listdir('grids'))
     with open('allfiles.csv', 'w') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',',
                     quotechar='"', quoting=csv.QUOTE_MINIMAL)
