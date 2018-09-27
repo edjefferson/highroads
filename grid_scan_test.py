@@ -126,7 +126,7 @@ master_df = pandas.read_csv("master.csv",
 
 for row in master_df.itertuples(index=True, name='Pandas'):
     bounding_box_string = getattr(row, "boundingbox")
-    image_file = "~/Downloads/%s" % (getattr(row, "image_file"))
+    image_file = "/home/ed/Downloads/%s" % (getattr(row, "image_file"))
     road_file = "grids/%s" % getattr(row, "road_file")
     try:
         process_grid_square(image_file,road_file,bounding_box_string)
