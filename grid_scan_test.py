@@ -99,7 +99,8 @@ def process_grid_square(image_file,road_file,bounding_box_string):
 
     #print(df.apply(get_elevation,axis=1))
     df['height'] = df.apply(get_elevation,axis=1)
-    df['csv_name'] = road_file.split("/")[1]
+    df['road_file'] = road_file.split("/")[1]
+    df['image_file'] = image_file.split("/")[1]
     for state in df.state.unique():
         sorted = df[df.state == state].sort_values(['height'],ascending=[False])
         print(sorted)
@@ -128,11 +129,4 @@ for row in master_df.itertuples(index=True, name='Pandas'):
     image_file = "~Downloads/%s" % (getattr(row, "image_file"))
     road_file = "grids/%s" % getattr(row, "road_file")
 
-bounding_box_string = "{minY:47.99944444444,minX:-99.00055555556,maxY:49.00055555556,maxX:-97.99944444444}"
-
-
-
-image_file = "testing/n49w099.zip"
-road_file = "testing/n49w099.csv"
-
-process_grid_square(image_file,road_file,bounding_box_string)
+    process_grid_square(image_file,road_file,bounding_box_string)
