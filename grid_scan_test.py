@@ -51,14 +51,14 @@ def get_elevation_in_meters(elevation_array, lat, lng, boundingBox):
     x_stop_length = x_range/array_length
     x_diff = lng - boundingBox['minX']
     x_stops = x_diff/x_stop_length
-    elevation = elevation_array[int(y_stops)][int(x_stops)]
+    if y_stops < array_length or x_stops < array_length:
+        elevation = elevation_array[int(y_stops)][int(x_stops)]
+    else:
+        elevation = None
     return elevation
 
-def process_grid_square():
-    bounding_box_string = "{minY:32.99944444444,minX:-85.00055555556,maxY:34.00055555556,maxX:-83.99944444444}"
+def process_grid_square(image_file,road_file,bounding_box_string):
 
-    image_file = "testing/n34w085.zip"
-    road_file = "testing/n33w085.csv"
 
     boundingBox = {}
     for x in (bounding_box_string[1:-2].split(",")):
@@ -99,10 +99,12 @@ def process_grid_square():
 
     #print(df.apply(get_elevation,axis=1))
     df['height'] = df.apply(get_elevation,axis=1)
+    df['csv_name'] = road_file.split("/")[1]
     for state in df.state.unique():
         sorted = df[df.state == state].sort_values(['height'],ascending=[False])
-        sorted.head(100).to_csv("%s_high.csv" % (state), mode='a', header=False)
-        sorted.tail(100).to_csv("%s_low.csv" % (state), mode='a', header=False)
+        print(sorted)
+        sorted.head(100).to_csv("final/%s_high.csv" % (state), mode='a', header=False)
+        sorted.tail(100).to_csv("final/%s_low.csv" % (state), mode='a', header=False)
 
 def single_test():
     elevation_array = get_elevation_array()
@@ -116,5 +118,21 @@ def single_test():
     lng = -84.57929766694424
 
     print(get_elevation_in_meters(elevation_array, lat, lng, boundingBox))
-    
-process_grid_square()
+
+
+master_df = pandas.read_csv("master.csv",
+                        header=0)
+
+for row in master_df.itertuples(index=True, name='Pandas'):
+    bounding_box_string = getattr(row, "boundingbox")
+    image_file = "~Downloads/%s" % (getattr(row, "image_file"))
+    road_file = "grids/%s" % getattr(row, "road_file")
+
+bounding_box_string = "{minY:47.99944444444,minX:-99.00055555556,maxY:49.00055555556,maxX:-97.99944444444}"
+
+
+
+image_file = "testing/n49w099.zip"
+road_file = "testing/n49w099.csv"
+
+process_grid_square(image_file,road_file,bounding_box_string)
