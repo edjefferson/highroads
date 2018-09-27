@@ -56,4 +56,15 @@ def every_thing():
                 new_start = int(start[1:]) + 1
                 code = "n%sw%s" % (new_start,end)
 
-every_thing()
+
+
+def allfile():
+    with open('allfiles.csv', 'w') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',',
+                    quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for file in files:
+            if file[-4:] == ".csv":
+                csvwriter.writerow([file])
+
+#every_thing()
+allfile()
