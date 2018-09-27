@@ -51,7 +51,7 @@ def get_elevation_in_meters(elevation_array, lat, lng, boundingBox):
     x_stop_length = x_range/array_length
     x_diff = lng - boundingBox['minX']
     x_stops = x_diff/x_stop_length
-    if y_stops < array_length or x_stops < array_length:
+    if y_stops >= 0 or x_stops >= 0 y_stops < array_length or x_stops < array_length:
         elevation = elevation_array[int(y_stops)][int(x_stops)]
     else:
         elevation = None
