@@ -20,7 +20,7 @@ def get_min_x(row):
 def every_thing():
     files = sorted(os.listdir('grids'))
 
-    df = pandas.read_csv("coded_master_list_ned_img.csv",
+    df = pandas.read_csv("coded_master_list_ned_img2.csv",
                             header=0)
 
     df['maxY'] = df.apply(get_max_y,axis=1)
@@ -28,7 +28,7 @@ def every_thing():
     df['maxX'] = df.apply(get_max_x,axis=1)
     df['minX'] = df.apply(get_min_x,axis=1)
 
-    with open('gridmatches.csv', 'w') as csvfile:
+    with open('gridmatches2.csv', 'w') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',',
                     quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for file in files:
@@ -47,8 +47,8 @@ def every_thing():
                 matching_grid_squares = df.query("minY <= %s & maxY >= %s & minX <= %s & maxX >= %s" % (min_lat, max_lat,min_lng, max_lng))
 
                 for index, row in matching_grid_squares.iterrows():
-                    csvwriter.writerow([file, file[:-4],row['code']])
-                    print(file + "," + file[:-4] + "," + row['code'])
+                    csvwriter.writerow([file, file[:-4],row['code'],row['downloadURL']])
+                    print(file + "," + file[:-4] + "," + row['code'] + "," + row['downloadURL'])
 
 
 
@@ -67,5 +67,5 @@ def allfile():
             if file[-4:] == ".csv":
                 csvwriter.writerow([file])
 
-#every_thing()
+every_thing()
 allfile()
