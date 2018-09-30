@@ -131,6 +131,5 @@ for row in master_df.itertuples(index=True, name='Pandas'):
     try:
         process_grid_square(image_file,road_file,bounding_box_string)
 
-    except IOError as e:
-        print(str(e))
+    except:
         continue
