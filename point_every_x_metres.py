@@ -47,8 +47,7 @@ def find_inbetween_points(file):
                 csv_writer.writerow([row.id,row.name,row.something,row.code,row.latitude,row.longitude])
             last_row = row
 
-files = sorted(os.listdir('roads_csvs'))
-find_inbetween_points('roads_csvs/02_Alaska.csv')
-#for file in files:
-#    print(file)
-#    find_inbetween_points('roads_csvs/' + file)
+files = sorted(os.listdir('all_roads_csvs'))
+for file in files:
+    print(file)
+    find_inbetween_points('all_roads_csvs/' + file)

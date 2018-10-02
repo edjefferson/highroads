@@ -20,6 +20,15 @@ def import_counties
   counties
 end
 
+def import_al_counties
+  counties = {}
+  CSV.foreach("state_codes.csv", headers: true) do |row|
+    puts row if row[3] == "AL"
+    counties[row[0]] = [row[1],row[2],row[3]] if row[3] == "AL"
+  end
+  counties
+end
+
 def download_roads(states)
   states.each do |k,v|
     url = "https://www2.census.gov/geo/tiger/TIGER2017/PRISECROADS/tl_2017_#{v}_prisecroads.zip"
@@ -31,6 +40,7 @@ end
 def download_all_roads(counties)
   counties.each do |k,v|
     url = "https://www2.census.gov/geo/tiger/TIGER2017/ROADS/#{k}"
+    puts url
     system("curl -o all_roads/#{v[2]}_#{v[1].gsub(" ","_")}_#{v[0]}.zip #{url}")
   end
 end
@@ -86,5 +96,6 @@ end
 
 #download_roads(import_states)
 #download_all_roads(import_counties)
+#download_all_roads(import_al_counties)
 #states_to_csv(import_states)
 counties_to_csv

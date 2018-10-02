@@ -12,3 +12,4 @@ temp_dir/*
 *.shp.ea.iso.xml
 *.shp.iso.xml
 *.shp.xml
+final/
