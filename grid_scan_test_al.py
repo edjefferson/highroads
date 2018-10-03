@@ -15,21 +15,21 @@ from osgeo import gdal
 def extract_img_data(image_file):
     print(image_file)
     zip_ref = zipfile.ZipFile(image_file, 'r')
-    zip_ref.extractall('temp_dir')
+    zip_ref.extractall('temp_dir2')
     zip_ref.close()
     print("zip extracted")
 
-    file = glob.glob('temp_dir/*.img')[0]
-    shutil.copy(file,"output.img")
+    file = glob.glob('temp_dir2/*.img')[0]
+    shutil.copy(file,"output2.img")
     print("img extracted")
 
-    shutil.rmtree('temp_dir')
+    shutil.rmtree('temp_dir2')
     print("temp files deleted")
 
 
 
 def get_elevation_array():
-    img=gdal.Open("output.img")
+    img=gdal.Open("output2.img")
     inputArray=img.ReadAsArray()
     print("array extracted")
     return inputArray
