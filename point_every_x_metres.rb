@@ -39,7 +39,7 @@ class RoadSegment < ActiveRecord::Base
     FastestCSV.foreach("#{file_name}") do |row|
       if row[0] == last_row[0] && ["S1100","S1200","S1400"].include?(row[3])
         coords = calculate_intermediate_coordinates([last_row[4],last_row[5]],[row[4],row[5]])
-        coords.each do |coord|
+        coords[0..-2].each do |coord|
           csv << [row[0],row[1],row[2],row[3],coord.lat,coord.lng]
 =begin
           road_segments << RoadSegment.new(
@@ -79,7 +79,7 @@ class RoadSegment < ActiveRecord::Base
   end
 
 end
-csvs = Dir["all_roads_csvs/*.csv"].sort
+csvs = Dir["all_roads_csvs/tl_2017_48109_roadstest.csv"].sort
 csvs.each do |csv_file|
   RoadSegment.import_csv(csv_file)
 end
