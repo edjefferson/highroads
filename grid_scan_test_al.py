@@ -53,6 +53,8 @@ def get_elevation_in_meters(elevation_array, lat, lng, boundingBox):
     x_stops = x_diff/x_stop_length
     if y_stops >= 0 and x_stops >= 0 and y_stops < array_length and x_stops < array_length:
         elevation = elevation_array[int(y_stops)][int(x_stops)]
+        if elevation == -1000000:
+            elevation = None
     else:
         elevation = None
     return elevation
@@ -103,9 +105,9 @@ def process_grid_square(image_file,road_file,bounding_box_string):
     df['image_file'] = image_file.split("/")[-1]
     for state in df.state.unique():
         sorted = df[df.state == state].sort_values(['height'],ascending=[False])
-        cols = ['height']
-        sorted[cols] = df[df[cols] > 0][cols]
-        sorted = sorted.dropna(subset=cols)
+        #cols = ['height']
+        #sorted[cols] = df[df[cols] > 0][cols]
+        #sorted = sorted.dropna(subset=cols)
         print(sorted)
         sorted.head(100).to_csv("final/%s_high.csv" % (state), mode='a', header=False)
         sorted.tail(100).to_csv("final/%s_low.csv" % (state), mode='a', header=False)
