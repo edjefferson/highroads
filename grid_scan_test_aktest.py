@@ -106,10 +106,10 @@ def process_grid_square(image_file,road_file,bounding_box_string):
         cols = ['height']
         sorted[cols] = df[df[cols] > 0][cols]
         sorted = sorted.dropna(subset=cols)
-        print(sorted)
+        #print(sorted)
         sorted.head(100).to_csv("final/%s_high.csv" % (state), mode='a', header=False)
         sorted.tail(100).to_csv("final/%s_low.csv" % (state), mode='a', header=False)
-
+        print(sorted.tail(1))
 def single_test():
     elevation_array = get_elevation_array()
 
