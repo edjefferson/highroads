@@ -104,6 +104,7 @@ def process_grid_square(image_file,road_file,bounding_box_string):
     df['road_file'] = road_file.split("/")[-1]
     df['image_file'] = image_file.split("/")[-1]
     for state in df.state.unique():
+        print("doing_state")
         sorted = df[df.state == state].sort_values(['height'],ascending=[False])
         #cols = ['height']
         #sorted[cols] = df[df[cols] > 0][cols]
