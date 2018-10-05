@@ -34,8 +34,8 @@ for row in master_df.itertuples(index=True, name='Pandas'):
         low_df['high_low'] = "low"
 
         cols = ['height']
-        df[cols] = df[df[cols] > 0][cols]
-        df = df.dropna(subset=['height'])
+        df[cols] = df[df[cols] > -3.4e+38][cols]
+        df.dropna(subset=['height'])
         low = low_df.sort_values('height', ascending=True)[:1]
         df = df.append(low, sort=True)
         #print(low_df.sort_values('height', ascending=True)[-1:].values)
