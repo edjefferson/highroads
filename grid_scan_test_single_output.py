@@ -15,7 +15,7 @@ from osgeo import gdal
 def extract_img_data(image_file):
     print(image_file)
     zip_ref = zipfile.ZipFile(image_file, 'r')
-    zip_ref.extractall('temp_dir')
+    zip_ref.extractall('temp_dir2')
     zip_ref.close()
     print("zip extracted")
 
