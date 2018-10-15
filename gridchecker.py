@@ -45,7 +45,8 @@ def every_thing():
                 min_lng = file_df['longitude'].min()
 
                 matching_grid_squares = df.query("minY <= %s & maxY >= %s & minX <= %s & maxX >= %s" % (min_lat, max_lat,min_lng, max_lng))
-                print matching_grid_squares.shape[0]
+                
+                print file + ":" + str(matching_grid_squares.shape[0])
                 for index, row in matching_grid_squares.iterrows():
                     csvwriter.writerow([file, file[:-4],row['code'],row['downloadURL'],row['boundingBox']])
                     print(file + "," + file[:-4] + "," + row['code'] + "," + row['downloadURL'] + "," + row['boundingBox'])
