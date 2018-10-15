@@ -20,7 +20,7 @@ def get_min_x(row):
 def every_thing():
     files = sorted(os.listdir('grids'))
 
-    df = pandas.read_csv("coded_master_list_ned_img2.csv",
+    df = pandas.read_csv("coded_master_list_alaska.csv",
                             header=0)
 
     df['maxY'] = df.apply(get_max_y,axis=1)
@@ -28,7 +28,7 @@ def every_thing():
     df['maxX'] = df.apply(get_max_x,axis=1)
     df['minX'] = df.apply(get_min_x,axis=1)
 
-    with open('gridmatches3.csv', 'w') as csvfile:
+    with open('gridmatches_alaska.csv', 'w') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',',
                     quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for file in files:

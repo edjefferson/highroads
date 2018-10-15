@@ -53,7 +53,7 @@ def get_elevation_in_meters(elevation_array, lat, lng, boundingBox):
     x_stops = x_diff/x_stop_length
     if y_stops >= 0 and x_stops >= 0 and y_stops < array_length and x_stops < array_length:
         elevation = elevation_array[int(y_stops)][int(x_stops)]
-        if elevation == -3.4028234663852886e+38:
+        if elevation < -3.4e+38:
             elevation = None
     else:
         elevation = None

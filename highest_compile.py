@@ -19,7 +19,7 @@ df = pandas.DataFrame(columns=columns)
 for row in master_df.itertuples(index=True, name='Pandas'):
     try:
         state_code = getattr(row, "code")
-        high_df = pandas.read_csv("final/%s_high.csv" % (state_code),
+        high_df = pandas.read_csv("final_2/%s_high.csv" % (state_code),
                                 header=0,
                                 names=['id_old','name','something','code','latitude','longitude','state','county','height','roadfile','nedfile'])
         high_df['high_low'] = "high"
@@ -43,4 +43,4 @@ for row in master_df.itertuples(index=True, name='Pandas'):
     except:
         print("bum")
 print(df)
-df.to_csv("final_test.csv" , mode='w', header=True)
+df.to_csv("final_test2.csv" , mode='w', header=True)
