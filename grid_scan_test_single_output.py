@@ -110,7 +110,7 @@ def process_grid_square(image_file,road_file,bounding_box_string):
         sorted = sorted.dropna(subset=cols)
         #print(sorted)
         #sorted.head(100).to_csv("final/%s_high.csv" % (state), mode='a', header=False)
-        sorted.to_csv("final/%s_full_grid_to_check.csv" % (state), mode='a', header=False)
+        sorted.to_csv("finalwy/%s_full_grid_to_check.csv" % (state), mode='a', header=False)
         print(sorted.tail(1).values)
 def single_test():
     elevation_array = get_elevation_array()
